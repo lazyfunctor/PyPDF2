@@ -461,7 +461,7 @@ class NameObject(str, PdfObject):
             if not tok:
                 # stream has truncated prematurely
                 raise PdfStreamError("Stream has ended unexpectedly")
-            if tok.isspace() or tok in NameObject.delimiterCharacters:
+            if not tok or tok.isspace() or tok in NameObject.delimiterCharacters:
                 stream.seek(-1, 1)
                 break
             name += tok
